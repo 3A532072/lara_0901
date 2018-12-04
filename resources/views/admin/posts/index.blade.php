@@ -38,22 +38,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach($posts as $post)
-                <tr>
-                <td>{{$post -> id}}</td>
-                <td>{{$post -> title}}</td>
-                <td>{{($post -> is_feature)? 'v' : 'x' }}</td>
-                <td>
-                <ahref="{{route('admin.posts.edit',$post->id)}}">編輯</a>
-                /
-                <ahref="#">刪除</a>
-                </td>
-                </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
+                    @foreach($posts as $post)
+                    <tr>
+                        <td>{{$post -> id}}</td>
+                        <td>{{$post -> title}}</td>
+                        <td>{{($post -> is_feature)? 'v' : 'x' }}</td>
+                        <td>
+                            <ahref="{{route('admin.posts.edit',$post->id)}}">編輯</a>
+                            /
+                            <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+                               {{ csrf_field() }}
+                               {{ method_field('DELETE') }}
+                               <button class="btn btn-link">刪除</button>
+                           </form>
+                       </td>
+                   </tr>
+                   @endforeach
+               </tbody>
+           </table>
+       </div>
+   </div>
 </div>
 <!-- /.row -->
 @endsection
