@@ -14,6 +14,8 @@
 Route::get('/'         , ['as' => 'home.index' , 'uses' => 'HomeController@index']);
 Route::get('posts'     , ['as' => 'posts.index', 'uses' => 'PostsController@index']);
 Route::get('posts/{id}', ['as' => 'posts.show' , 'uses' => 'PostsController@show']);
+Route::post('posts'    ,['as'=>'admin.posts.store','uses'=>'AdminPostsController@store');
+
 
 // 後台
 Route::group(['prefix' => 'admin'], function() {
